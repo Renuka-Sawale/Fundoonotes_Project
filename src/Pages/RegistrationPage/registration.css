@@ -1,0 +1,50 @@
+.top-text {
+    text-decoration-color: #34a853;
+}
+
+.fundooo{
+    display:inline-flex;
+    margin-bottom: -54px;
+}
+
+.content-text{
+    font-size: 25px;
+}
+
+.top-content{
+    padding: 25px;
+    height: 69vh;
+    width: 50%;
+    border: 2px solid #e0e0e0;
+}
+
+.content{
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.content1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content2 {
+    width: 100%;
+    padding-top: 20px;
+}
+
+.content2 {
+    width: 100%;
+}
+
+.content3 {
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+    

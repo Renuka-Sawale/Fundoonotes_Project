@@ -5,10 +5,12 @@
 .fundooo{
     display:inline-flex;
     margin-bottom: -54px;
+    font-size: 14px;
 }
 
 .content-text{
     font-size: 25px;
+    font-weight: 400;
 }
 
 .top-content{
@@ -27,24 +29,29 @@
 }
 
 .content1{
-    width: 100%;
+    width: 64%;
     display: flex;
     justify-content: space-between;
 }
 
 .content2 {
-    width: 100%;
+    width: 70%;
     padding-top: 20px;
-}
-
-.content2 {
-    width: 100%;
 }
 
 .content3 {
-    width: 100%;
+    width: 64%;
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
 }
+
+.checkbox {
+    padding-top: 20px;
+}
     
+.Bottom-Button {
+    display: flex;
+    justify-content: center;
+}
+

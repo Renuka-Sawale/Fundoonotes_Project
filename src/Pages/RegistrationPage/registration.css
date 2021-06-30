@@ -14,9 +14,7 @@
 }
 
 .top-content{
-    padding: 25px;
-    height: 69vh;
-    width: 50%;
+    padding: 18px;
     border: 2px solid #e0e0e0;
 }
 
@@ -29,7 +27,7 @@
 }
 
 .content1{
-    width: 64%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
 }
@@ -40,7 +38,7 @@
 }
 
 .content3 {
-    width: 64%;
+    width: 70%;
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -55,3 +53,11 @@
     justify-content: center;
 }
 
+.field-mr{
+    margin-right: 5px !important;
+}
+
+.sigin-img {
+    margin-top: -286px;
+    margin-left: 400px;
+}

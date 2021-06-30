@@ -21,9 +21,7 @@ class RegistrationPage extends Component {
             password: '',
             passwordError: false,
             passwordErrorMessage: '',
-            confirmPassword: '',
-            confirmPasswordError: false,
-            confirmPasswordErrorMessage: ''
+            confirmPassword: ''
         }
     }
 
@@ -41,44 +39,35 @@ class RegistrationPage extends Component {
             emailError: false,
             emailErrorMessage: '',
             passwordError: false,
-            passwordErrorMessage: '',
-            confirmPasswordError: false,
-            confirmPasswordErrorMessage: ''
+            passwordErrorMessage: ''
         })
         let valid = true;
         if(this.state.firstName.length == 0) {
             valid = false
             this.setState({
                 firstNameError: true,
-                firstNameErrorMessage: 'First name is required!'
+                firstNameErrorMessage: 'Enter First name'
             })
         }
         if(this.state.lastName.length == 0) {
             valid = false
             this.setState({
                 lastNameError: true,
-                lastNameErrorMessage: 'Last name is required!'
+                lastNameErrorMessage: 'Enter Last name'
             })
         }
         if(this.state.email.length == 0) {
             valid = false
             this.setState({
                 emailError: true,
-                emailErrorMessage: 'Email is required!'
+                emailErrorMessage: 'Choose a Gmail address'
             })
         }
         if(this.state.password.length == 0) {
             valid = false
             this.setState({
                 passwordError: true,
-                passwordErrorMessage: 'Password is required!'
-            })
-        }
-        if(this.state.confirmPassword.length == 0) {
-            valid = false
-            this.setState({
-                confirmPasswordError: true,
-                confirmPasswordErrorMessage: 'Confirm Password is required!'
+                passwordErrorMessage: 'Enter a password'
             })
         }
         return valid;
@@ -94,37 +83,38 @@ class RegistrationPage extends Component {
             <div className="content">
                 <form className="top-content">
                     <div>
-                    <div className="fundooo">
-                        <h1 style={{color : '#34a853'}}>F</h1>
-                        <h1 style={{color : '#4285f4'}}>u</h1>
-                        <h1 style={{color : '#fbbc05'}}>n</h1>
-                        <h1 style={{color : '#4285f4'}}>d</h1>
-                        <h1 style={{color : '#ea4335'}}>o</h1>
-                        <h1 style={{color : '#fbbc05'}}>o</h1>
-                    </div>
-                    <h1 className="content-text">Create your Google Account</h1>
-                    <div className="content1">
-                        <TextField className="field-mr" error={this.state.firstNameError} id="outlined-basic" label="First name" helperText={this.state.firstNameErrorMessage} variant="outlined" onChange={this.handleInput}/>
-                        <TextField error={this.state.lastNameError} id="outlined-basic" label="Last name"  helperText={this.state.lastNameErrorMessage} variant="outlined" />
-                    </div>
+                        <div className="fundooo">
+                            <h1 style={{color : '#34a853'}}>F</h1>
+                            <h1 style={{color : '#4285f4'}}>u</h1>
+                            <h1 style={{color : '#fbbc05'}}>n</h1>
+                            <h1 style={{color : '#4285f4'}}>d</h1>
+                            <h1 style={{color : '#ea4335'}}>o</h1>
+                            <h1 style={{color : '#fbbc05'}}>o</h1>
+                        </div>
+                        <h1 className="content-text">Create your Google Account</h1>
+                        <div className="content1">
+                            <TextField className="field-mr" error={this.state.firstNameError} id="outlined-basic" label="First name" helperText={this.state.firstNameErrorMessage} variant="outlined" onChange={this.handleInput}/>
+                            <TextField error={this.state.lastNameError} id="outlined-basic" label="Last name"  helperText={this.state.lastNameErrorMessage} variant="outlined" />
+                        </div>
 
-                    <div className="content2">
-                        <TextField error={this.state.emailError} id="outlined-basic" label="Your email address" helperText={this.state.emailErrorMessage} fullWidth variant="outlined" />
-                    </div>
+                        <div className="content2">
+                            <TextField error={this.state.emailError} id="outlined-basic" label="Your email address" helperText={this.state.emailErrorMessage} fullWidth variant="outlined" />
+                        </div>
 
-                   <div class="content3">
-                        <TextField className="field-mr" error={this.state.passwordError} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage}variant="outlined" />
-                        <TextField error={this.state.confirmPasswordError} id="outlined-basic" label="Confirm" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" />
-                    </div>
-                   
-                    <div class= "checkbox">
-                        <Checkbox defaultChecked color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
-                        {/* <p>Show Password</p> */}
-                        
-                    </div>
-                    <div class="Bottom-Button">
-                        <Button variant="contained" color="primary" href="#contained-buttons" onClick={this.submit}>Submit</Button>
-                    </div>
+                    <div class="content3">
+                            <TextField className="field-mr" error={this.state.passwordError} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage}variant="outlined" />
+                            <TextField id="outlined-basic" label="Confirm" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" />
+                        </div>
+                    
+                        <div class= "checkbox">
+                            <Checkbox defaultChecked color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }}  />
+                            <p>Show Password</p>
+                            
+                        </div>
+                        <div class="Bottom-Button">
+                            {/* <p>Sign in instead</p> */}
+                            <Button variant="contained" color="primary" href="#contained-buttons" onClick={this.submit}>Submit</Button>
+                        </div>
                     </div>
                     <div className="sigin-img">
                         <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="" width="220" height="300" class="j9NuTc TrZEUc"/> 

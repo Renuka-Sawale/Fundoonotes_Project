@@ -54,7 +54,14 @@
     
 .Bottom-Button {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Bottom-text{
+    padding-right: 165px;
+    justify-content: row;
+    color: blue;
 }
 
 .field-mr{
@@ -62,7 +69,18 @@
 }
 
 .sigin-img {
+    margin-left: 11%;
+    width: 22%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.img-text {
+    width: 180px;
+}
+
+.button{
+    padding-top: 10px;
 }

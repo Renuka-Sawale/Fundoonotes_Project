@@ -1,0 +1,56 @@
+.top-content{
+    padding: 18px;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    flex-direction: row;
+    height: 70vh;
+}
+
+.second-row{
+    text-align: center;
+}
+
+.content{
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.content-text{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.content-text1{
+    font-size: 19px;
+    font-weight: initial;
+}
+
+.content2 {
+    width: 95%;
+    padding-top: 20px;
+}
+
+.email-text{
+    display: flex;
+    text-align: start;
+    color: blue;
+}
+
+.email-notification{
+    display: flex;
+    text-align: start;
+}
+
+.Bottom-Button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-content: start;
+}
+
+.button{
+    margin-left: 40px;
+}

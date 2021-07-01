@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import '../LoginPage/login.css';
+import UserService from '../../services/userService';
+const service = new UserService()
 
-class LoginPage extends Component {
+export default class LoginPage extends Component {
 
     constructor(props) {
         super(props)
@@ -11,9 +13,9 @@ class LoginPage extends Component {
             email: '',
             emailError: false,
             emailErrorMessage: '',
-           // password: '',
-           // passwordError: false,
-           //passwordErrorMessage: ''
+            password: '',
+            passwordError: false,
+            passwordErrorMessage: ''
         }
     }
 
@@ -21,6 +23,55 @@ class LoginPage extends Component {
         console.log(e.target.name, e.target.value);
         this.setState({ [e.target.name]: e.target.value })
     } 
+
+    validationCheck = () => {
+        this.setState({
+            emailError: false,
+            emailErrorMessage: '',
+            passwordError: false,
+            passwordErrorMessage: ''
+        })
+        let valid = true;
+        if(this.state.email.length == 0) {
+            valid = false
+            this.setState({
+                emailError: true,
+                emailErrorMessage: 'Choose a Gmail address'
+            })
+        }
+        if(this.state.password.length == 0) {
+            valid = false
+            this.setState({
+                passwordError: true,
+                passwordErrorMessage: 'Enter a password'
+            })
+        }
+        return valid;
+    }
+
+    ShowPassword = (e) => {
+        this.setState({ showPassword: !this.state.showPassword });
+    }
+
+    submit = () => {
+        if (this.validationCheck()) {
+            console.log('call api');
+            let data = {
+                "email": this.state.email,
+                "service": "advance",
+                "password": this.state.password
+            }
+            service.login(data).then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+            });
+           
+        } else {
+            console.log('validation failed')
+        }
+    }
 
     render() {
         return (
@@ -41,10 +92,12 @@ class LoginPage extends Component {
                         </div>
 
                         <div className="content2">
-                            <TextField id="outlined-basic" label="Email or phone" fullWidth variant="outlined" />
+                            <TextField id="outlined-basic" name="email" label="Email" error={this.state.emailError} helperText={this.state.emailErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
                             <p className="email-text">Forgot Email?</p>
-                            <p className="email-notification">Not your computer? Use Guest mode to sign in privately.</p>
+                            <TextField error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
 
+                            <p className="email-text">Forgot Password?</p>
+                            <p className="email-notification">Not your computer? Use Guest mode to sign in privately.</p>
                         </div>
 
                         <div class="Bottom-Button">
@@ -62,5 +115,4 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage
 

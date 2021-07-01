@@ -4,10 +4,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import '../RegistrationPage/registration.css';
 import UserService from '../../services/userService';
+
 const service = new UserService()
 
-
-class RegistrationPage extends Component {
+export default class RegistrationPage extends Component {
 
     constructor(props) {
         super(props)
@@ -23,7 +23,10 @@ class RegistrationPage extends Component {
             emailErrorMessage: '',
             password: '',
             passwordError: false,
-            passwordErrorMessage: ''
+            passwordErrorMessage: '',
+            confirmPassword: '',
+            confirmPasswordError: false,
+            confirmPasswordErrorMessage: ''
         }
     }
 
@@ -41,7 +44,9 @@ class RegistrationPage extends Component {
             emailError: false,
             emailErrorMessage: '',
             passwordError: false,
-            passwordErrorMessage: ''
+            passwordErrorMessage: '',
+            confirmPasswordError: false,
+            confirmPasswordErrorMessage: ''
         })
         let valid = true;
         if(this.state.firstName.length == 0) {
@@ -72,12 +77,21 @@ class RegistrationPage extends Component {
                 passwordErrorMessage: 'Enter a password'
             })
         }
+        // if(this.state.confirmPassword.length == 0) {
+        //     valid = false
+        //     this.setState({
+        //         confirmpasswordError: true,
+        //         confirmpasswordErrorMessage: 'confirm password'
+        //     })
+        // }
         return valid;
     }
 
+    ShowPassword = (e) => {
+        this.setState({ showPassword: !this.state.showPassword });
+    }
+
     submit = () => {
-        //console.log();
-        //this.validation()
         if (this.validationCheck()) {
             console.log('call api');
             let data = {
@@ -87,7 +101,6 @@ class RegistrationPage extends Component {
                 "service": "advance",
                 "password": this.state.password
             }
-
             service.registration(data).then((data) => {
                 console.log(data);
             })
@@ -113,7 +126,9 @@ class RegistrationPage extends Component {
                             <h1 style={{color : '#ea4335'}}>o</h1>
                             <h1 style={{color : '#fbbc05'}}>o</h1>
                         </div>
+                        
                         <h1 className="content-text">Create your Google Account</h1>
+                        
                         <div className="content1">
                             <TextField className="field-mr" error={this.state.firstNameError} name="firstName" id="outlined-basic" label="First name" helperText={this.state.firstNameErrorMessage} variant="outlined" onChange={this.handleInput}/>
                             <TextField error={this.state.lastNameError} id="outlined-basic" name="lastName" label="Last name"  helperText={this.state.lastNameErrorMessage} variant="outlined" onChange={this.handleInput} />
@@ -124,8 +139,8 @@ class RegistrationPage extends Component {
                         </div>
 
                         <div class="content3">
-                            <TextField className="field-mr" error={this.state.passwordError} name="password" id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage}variant="outlined" onChange={this.handleInput} />
-                            <TextField id="outlined-basic" label="Confirm" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" />
+                            <TextField className="field-mr" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage}variant="outlined" onChange={this.handleInput} />
+                            <TextField  error={this.state.confirmPasswordError} name="confirmPassword" type={this.state.showPassword ? "text": "confirmPassword"} id="outlined-basic" label="Confirm" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
                         </div>
                     
                         <div class= "checkbox">
@@ -142,6 +157,7 @@ class RegistrationPage extends Component {
                             </div>
                         </div>
                     </div>
+                  
                     <div className="sigin-img">
                         <div className="sigin-img">
                             <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="" width="220" height="200" class="j9NuTc TrZEUc"/> 
@@ -156,5 +172,4 @@ class RegistrationPage extends Component {
     }
 }
 
-export default RegistrationPage
 

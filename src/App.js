@@ -1,13 +1,17 @@
-import logo from './logo.svg';
-//import './App.css';
+import './App.css';
 import Registration from './Pages/RegistrationPage/Registration';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Login from './Pages/LoginPage/Login';
 
 function App() {
   return (
     <div className="App">
-      {/* <Registration/> */}
-      <Login/>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/registration" component={Registration} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

@@ -50,7 +50,7 @@ export default class RegistrationPage extends Component {
         })
         let valid = true;
         if(this.state.firstName.length == 0) {
-            valid = false
+            valid = false;
             this.setState({
                 firstNameError: true,
                 firstNameErrorMessage: 'Enter First name'
@@ -77,19 +77,29 @@ export default class RegistrationPage extends Component {
                 passwordErrorMessage: 'Enter a password'
             })
         }
-        // if(this.state.confirmPassword.length == 0) {
-        //     valid = false
-        //     this.setState({
-        //         confirmpasswordError: true,
-        //         confirmpasswordErrorMessage: 'confirm password'
-        //     })
-        // }
+        if(this.state.confirmPassword.length == 0) {
+            valid = false
+            this.setState({
+                confirmpasswordError: true,
+                confirmpasswordErrorMessage: 'confirm password'
+            })
+        }
         return valid;
     }
 
     ShowPassword = (e) => {
         this.setState({ showPassword: !this.state.showPassword });
     }
+
+    handleClickToLogin = (e) => {
+        // Redirect to="/login";
+        console.log("xyz");
+        this.props.history.push("/login");
+    };
+
+    handleClickToShowPassword = (e) => {
+        this.setState({ showPassword: !this.state.showPassword });
+    };
 
     submit = () => {
         if (this.validationCheck()) {
@@ -139,18 +149,18 @@ export default class RegistrationPage extends Component {
                         </div>
 
                         <div class="content3">
-                            <TextField className="field-mr" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage}variant="outlined" onChange={this.handleInput} />
-                            <TextField  error={this.state.confirmPasswordError} name="confirmPassword" type={this.state.showPassword ? "text": "confirmPassword"} id="outlined-basic" label="Confirm" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField className="field-mr" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField name="confirmPassword" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Confirm Password" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
                         </div>
                     
                         <div class= "checkbox">
                             <Checkbox defaultChecked color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }}  />
-                            <p>Show Password</p>
+                            <p onClick={this.handleClickToShowPassword}>Show Password</p>
                         </div>
 
                         <div class="Bottom-Button">
                             <div class="Bottom-text">
-                                <p>Sign in instead</p> 
+                                <p onClick={this.handleClickToLogin}>Sign in instead</p> 
                             </div>
                             <div className="button">
                                 <Button variant="contained" color="primary" onClick={this.submit}>Submit</Button>

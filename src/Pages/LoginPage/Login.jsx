@@ -53,6 +53,12 @@ export default class LoginPage extends Component {
         this.setState({ showPassword: !this.state.showPassword });
     }
 
+    handleClickToForgotPassword = (e) => {
+        // Redirect to="/resetPassword";
+        console.log("xyz");
+        this.props.history.push("/forgotPassword");
+    }
+
     submit = () => {
         if (this.validationCheck()) {
             console.log('call api');
@@ -93,10 +99,9 @@ export default class LoginPage extends Component {
 
                         <div className="content2">
                             <TextField id="outlined-basic" name="email" label="Email" error={this.state.emailError} helperText={this.state.emailErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
-                            <p className="email-text">Forgot Email?</p>
-                            <TextField error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
+                            <TextField className="password-text" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
 
-                            <p className="email-text">Forgot Password?</p>
+                            <p className="email-text" onClick={this.handleClickToForgotPassword}>Forgot Password?</p>
                             <p className="email-notification">Not your computer? Use Guest mode to sign in privately.</p>
                         </div>
 

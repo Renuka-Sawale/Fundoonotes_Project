@@ -3,7 +3,7 @@
     border: 2px solid #e0e0e0;
     display: flex;
     flex-direction: row;
-    height: 80vh;
+    height: 85vh;
 }
 
 .second-row{
@@ -39,18 +39,21 @@
     color: blue;
 }
 
+.password-text {
+    margin-top: 35px !important;
+}
+
 .email-notification{
     display: flex;
     text-align: start;
+    margin-top: 40px;
 }
 
 .Bottom-Button {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     justify-content: start;
+    margin-top: 34px;
 }
 
 .button{
-    margin-left: 40px;
+    margin-left: 79px;
 }

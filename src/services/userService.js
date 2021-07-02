@@ -16,4 +16,8 @@ export default class UserService {
     forgetPassword = (data) => {
         return axios.postMethod(`${this.baseURL}/user/reset`, data);
     }
+
+    resetPassword = (data) => {
+        return axios.postMethod(`${this.baseURL}/user/reset-password`, data);
+    }
 }

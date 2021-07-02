@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import '../ForgotEmailPage/forgotEmail.css';
+import '../ForgotPasswordPage/forgotPassword.css';
 
 import UserService from '../../services/userService';
 const service = new UserService()
 
-export default class ForgotEmailPage extends Component {
+export default class ForgotPasswordPage extends Component {
 
     constructor(props) {
         super(props)
@@ -60,7 +60,7 @@ export default class ForgotEmailPage extends Component {
     render() {
         return (
             <div className="content">
-                <form className="top-content">
+                <form className="top-content1">
                     <div className="second-row">
                         <div className="top">
                             <div className="fundooo">
@@ -72,14 +72,14 @@ export default class ForgotEmailPage extends Component {
                                 <h1 style={{color : '#fbbc05'}}>o</h1>
                             </div> 
                             <h1 className="content-text">Find your Email</h1>
-                            <h1 className="content-text1">Enter your phone number or recovery email</h1>
+                            <h1 className="content-phntxt">Enter your phone number or recovery email</h1>
                         </div>
 
-                        <div className="content2">
+                        <div className="email-content">
                             <TextField id="outlined-basic" name="email" label="Phone Number or Email" error={this.state.emailError} helperText={this.state.emailErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
                         </div>
 
-                        <div class="Bottom-Button">
+                        <div class="Bottom-Button1">
                             <div className="button">
                                 <Button variant="contained" color="primary" onClick={this.submit}>Next</Button>
                             </div>

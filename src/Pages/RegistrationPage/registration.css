@@ -79,14 +79,23 @@
 
 .img-text {
     width: 180px;
+    margin-bottom: 70px;
 }
 
 .button{
     padding-top: 10px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 625px) {
+    .content{
+        width: 500px;
+        
+    }
+    .top-content{
+        display: flex;
+    }
     .sigin-img {
       display: none !important;
     }
 }
+

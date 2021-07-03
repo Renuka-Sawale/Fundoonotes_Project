@@ -10,17 +10,19 @@ import ResetPassword from './Pages/ResetPasswordPage/ResetPassword';
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-component"> */}
+      <header className="App-component">
       <BrowserRouter>
         {/* <Redirect from="/" to="/login" /> */}
         <Switch>
+          
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/forgotPassword" component={ForgotPassword} />
           <Route exact path="/resetPassword" component={ResetPassword} />
+          <Route exact path="/resetpassword/:token" component={ResetPassword}/>
         </Switch>
       </BrowserRouter>
-      {/* </header> */}
+      </header>
     </div>
   );
 }

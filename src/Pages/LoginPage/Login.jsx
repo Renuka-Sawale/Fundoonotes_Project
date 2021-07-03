@@ -5,7 +5,7 @@ import '../LoginPage/login.css';
 import UserService from '../../services/userService';
 const service = new UserService()
 
-export default class LoginPage extends Component {
+export default class Login extends Component {
 
     constructor(props) {
         super(props)
@@ -59,6 +59,11 @@ export default class LoginPage extends Component {
         this.props.history.push("/forgotPassword");
     }
 
+    handleClickToRegistration = (e) => {
+        // Redirect to="/registration";
+        console.log("xyz");
+        this.props.history.push("/registration");
+    }
     submit = () => {
         if (this.validationCheck()) {
             console.log('call api');
@@ -107,7 +112,7 @@ export default class LoginPage extends Component {
 
                         <div class="Bottom-Button">
                             <div class="Bottom-text">
-                                <p>Sign in instead</p> 
+                                <p onClick={this.handleClickToRegistration}>Create account</p> 
                             </div>
                             <div className="button">
                                 <Button variant="contained" color="primary" onClick={this.submit}>Next</Button>

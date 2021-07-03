@@ -6,7 +6,7 @@ import '../ForgotPasswordPage/forgotPassword.css';
 import UserService from '../../services/userService';
 const service = new UserService()
 
-export default class ForgotPasswordPage extends Component {
+export default class ForgotPassword extends Component {
 
     constructor(props) {
         super(props)

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+
 import '../ResetPasswordPage/resetPassword.css';
 
 import UserService from '../../services/userService';
 const service = new UserService()
 
-export default class ResetPasswordPage extends Component {
+export default class ResetPassword extends Component {
 
     constructor(props) {
         super(props)
@@ -29,6 +31,15 @@ export default class ResetPasswordPage extends Component {
         this.setState({ showPassword: !this.state.showPassword });
     }
 
+    handleClickToShowPassword = (e) => {
+        this.setState({ showPassword: !this.state.showPassword });
+    };
+
+    handleClickToLogin = (e) => {
+        // Redirect to="/login";
+        this.props.history.push("/login");
+    };
+
     validationCheck = () => {
         this.setState({
             passwordError: false,
@@ -47,26 +58,21 @@ export default class ResetPasswordPage extends Component {
         if(this.state.confirmPassword.length == 0) {
             valid = false
             this.setState({
-                confirmpasswordError: true,
-                confirmpasswordErrorMessage: 'confirm password'
+                confirmPasswordError: true,
+                confirmPasswordErrorMessage: 'confirm password'
             })
         }
         return valid;
-    }
-
-    ShowPassword = (e) => {
-        this.setState({ showPassword: !this.state.showPassword });
     }
 
     submit = () => {
         if (this.validationCheck()) {
             console.log('call api');
             let data = {
-                "password": this.state.password,
-                "confirmPassword": this.state.confirmPassword,
-                "service": "advance"
-            }
-            service.resetPassword(data).then((data) => {
+                "newPassword": this.state.password
+            };
+            let token = this.props.match.params.token;
+            service.resetPassword(data, token).then((data, token) => {
                 console.log(data);
             })
             .catch((error) => {
@@ -101,6 +107,11 @@ export default class ResetPasswordPage extends Component {
 
                         <div className="reset-content2">
                             <TextField id="outlined-basic" name="confirmPassword" type={this.state.showPassword ? "text": "password"} label="Confirm password" error={this.state.confirmPasswordError} helperText={this.state.confirmPasswordErrorMessage} fullWidth variant="outlined" onChange={this.handleInput} />
+                        </div>
+
+                        <div class= "checkbox">
+                            <Checkbox onClick={this.handleClickToShowPassword} color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }}  />
+                            <p>Show Password</p>
                         </div>
 
                         <div class="Bottom-Buttonr">

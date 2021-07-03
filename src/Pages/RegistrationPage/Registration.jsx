@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
+// import Snackbar from "@material-ui/core/Snackbar";
+// import IconButton from "@material-ui/core/IconButton";
+// import CloseIcon from "@material-ui/icons/Close";
 import Button from '@material-ui/core/Button';
 import '../RegistrationPage/registration.css';
 import UserService from '../../services/userService';
 
 const service = new UserService()
 
-export default class RegistrationPage extends Component {
+export default class Registration extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            // open: false,
+            // SnackbarMsg: "",
+            // SnackbarStyle: "",
             firstName: '',
             firstNameError: false,
             firstNameErrorMessage: '',
@@ -80,8 +86,8 @@ export default class RegistrationPage extends Component {
         if(this.state.confirmPassword.length == 0) {
             valid = false
             this.setState({
-                confirmpasswordError: true,
-                confirmpasswordErrorMessage: 'confirm password'
+                confirmPasswordError: true,
+                confirmPasswordErrorMessage: 'confirm password'
             })
         }
         return valid;
@@ -113,15 +119,33 @@ export default class RegistrationPage extends Component {
             }
             service.registration(data).then((data) => {
                 console.log(data);
+                // this.setState({
+                //     open: true,
+                //     SnackbarMsg: "successfully signup",
+                //     SnackbarStyle: "snackbar-success",
+                // });
             })
             .catch((error) => {
                 console.log("error: ", error);
+                // this.setState({
+                //     open: true,
+                //     SnackbarMsg: "oops something went wrong",
+                //     SnackbarStyle: "snackbar-error",
+                // });
             });
            
         } else {
             console.log('validation failed')
         }
     }
+
+    handleClose = () => {
+        this.setState({
+          open: false,
+          SnackbarMsg: "",
+          SnackbarStyle: "error",
+        });
+    };
 
     render() {
         return (
@@ -150,12 +174,12 @@ export default class RegistrationPage extends Component {
 
                         <div class="content3">
                             <TextField className="field-mr" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} variant="outlined" onChange={this.handleInput} />
-                            <TextField name="confirmPassword" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Confirm Password" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField name="confirmPassword" type={this.state.showPassword ? "text": "password"} error={this.state.passwordError} id="outlined-basic" label="Confirm Password" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
                         </div>
                     
                         <div class= "checkbox">
-                            <Checkbox defaultChecked color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }}  />
-                            <p onClick={this.handleClickToShowPassword}>Show Password</p>
+                            <Checkbox onClick={this.handleClickToShowPassword} color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }}  />
+                            <p>Show Password</p>
                         </div>
 
                         <div class="Bottom-Button">
@@ -177,6 +201,29 @@ export default class RegistrationPage extends Component {
                         </div>
                     </div>
                 </form>
+                {/* <Snackbar
+                    anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center",
+                    }}
+                    open={this.state.open}
+                    autoHideDuration={2000}
+                    onClose={this.handleClose}
+                    message={this.state.SnackbarMessage}
+                    className={this.state.SnackbarStyle}
+                    action={
+                        <React.Fragment>
+                        <IconButton
+                            size="small"
+                            aria-label="close"
+                            color="inherit"
+                            onClick={this.handleClose}
+                        >
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                        </React.Fragment>
+                    }
+                /> */}
             </div>
         )
     }

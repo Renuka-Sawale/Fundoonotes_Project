@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
-// import Snackbar from "@material-ui/core/Snackbar";
-// import IconButton from "@material-ui/core/IconButton";
-// import CloseIcon from "@material-ui/icons/Close";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import Button from '@material-ui/core/Button';
 import '../RegistrationPage/registration.css';
 import UserService from '../../services/userService';
@@ -15,9 +15,9 @@ export default class Registration extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            // open: false,
-            // SnackbarMsg: "",
-            // SnackbarStyle: "",
+            open: false,
+            SnackbarMsg: "",
+            SnackbarStyle: "",
             firstName: '',
             firstNameError: false,
             firstNameErrorMessage: '',
@@ -119,19 +119,19 @@ export default class Registration extends Component {
             }
             service.registration(data).then((data) => {
                 console.log(data);
-                // this.setState({
-                //     open: true,
-                //     SnackbarMsg: "successfully signup",
-                //     SnackbarStyle: "snackbar-success",
-                // });
+                this.setState({
+                    open: true,
+                    SnackbarMsg: "successfully signup",
+                    SnackbarStyle: "snackbar-success",
+                });
             })
             .catch((error) => {
                 console.log("error: ", error);
-                // this.setState({
-                //     open: true,
-                //     SnackbarMsg: "oops something went wrong",
-                //     SnackbarStyle: "snackbar-error",
-                // });
+                this.setState({
+                    open: true,
+                    SnackbarMsg: "oops something went wrong",
+                    SnackbarStyle: "snackbar-error",
+                });
             });
            
         } else {
@@ -201,7 +201,7 @@ export default class Registration extends Component {
                         </div>
                     </div>
                 </form>
-                {/* <Snackbar
+                <Snackbar
                     anchorOrigin={{
                         vertical: "bottom",
                         horizontal: "center",
@@ -223,7 +223,7 @@ export default class Registration extends Component {
                         </IconButton>
                         </React.Fragment>
                     }
-                /> */}
+                />
             </div>
         )
     }

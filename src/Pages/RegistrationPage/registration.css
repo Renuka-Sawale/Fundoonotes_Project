@@ -87,15 +87,24 @@
 }
 
 @media (max-width: 625px) {
-    .content{
-        width: 500px;
-        
-    }
+    
     .top-content{
         display: flex;
+        flex-direction: column;
     }
     .sigin-img {
       display: none !important;
+    }
+    .field-mr {
+        margin-right: 5px !important;
+        padding-bottom: 15px !important;
+    }
+    .content1 {
+        flex-direction: column;
+    }
+    .content2 {
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 }
 

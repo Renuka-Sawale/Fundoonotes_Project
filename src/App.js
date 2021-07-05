@@ -10,7 +10,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 function App() {
   return (
     <div className="App">
-      <header className="App-component">
+    
       <BrowserRouter>
         {/* <Redirect from="/" to="/login" /> */}
         <Switch>
@@ -22,7 +22,7 @@ function App() {
           <Dashboard/>
         </Switch>
       </BrowserRouter>
-      </header>
+     
     </div>
   );
 }

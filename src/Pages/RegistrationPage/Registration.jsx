@@ -7,11 +7,17 @@ import CloseIcon from "@material-ui/icons/Close";
 import Button from '@material-ui/core/Button';
 import '../RegistrationPage/registration.css';
 import UserService from '../../services/userService';
+import MuiAlert from '@material-ui/lab/Alert';
+
+// import { makeStyles } from '@material-ui/core/styles';
+// import SnackbarContent from '@material-ui/core/SnackbarContent';
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const service = new UserService()
 
 export default class Registration extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -32,14 +38,15 @@ export default class Registration extends Component {
             passwordErrorMessage: '',
             confirmPassword: '',
             confirmPasswordError: false,
-            confirmPasswordErrorMessage: ''
+            confirmPasswordErrorMessage: '',
+            severity: ''
         }
     }
 
     handleInput = (e) => {
         console.log(e.target.name, e.target.value);
         this.setState({ [e.target.name]: e.target.value })
-    } 
+    }
 
     validationCheck = () => {
         this.setState({
@@ -55,35 +62,35 @@ export default class Registration extends Component {
             confirmPasswordErrorMessage: ''
         })
         let valid = true;
-        if(this.state.firstName.length == 0) {
+        if (this.state.firstName.length == 0) {
             valid = false;
             this.setState({
                 firstNameError: true,
                 firstNameErrorMessage: 'Enter First name'
             })
         }
-        if(this.state.lastName.length == 0) {
+        if (this.state.lastName.length == 0) {
             valid = false
             this.setState({
                 lastNameError: true,
                 lastNameErrorMessage: 'Enter Last name'
             })
         }
-        if(this.state.email.length == 0) {
+        if (this.state.email.length == 0) {
             valid = false
             this.setState({
                 emailError: true,
                 emailErrorMessage: 'Choose a Gmail address'
             })
         }
-        if(this.state.password.length == 0) {
+        if (this.state.password.length == 0) {
             valid = false
             this.setState({
                 passwordError: true,
                 passwordErrorMessage: 'Enter a password'
             })
         }
-        if(this.state.confirmPassword.length == 0) {
+        if (this.state.confirmPassword.length == 0) {
             valid = false
             this.setState({
                 confirmPasswordError: true,
@@ -123,17 +130,19 @@ export default class Registration extends Component {
                     open: true,
                     SnackbarMsg: "successfully signup",
                     SnackbarStyle: "snackbar-success",
+                    severity: 'success'
                 });
             })
-            .catch((error) => {
-                console.log("error: ", error);
-                this.setState({
-                    open: true,
-                    SnackbarMsg: "oops something went wrong",
-                    SnackbarStyle: "snackbar-error",
+                .catch((error) => {
+                    console.log("error: ", error);
+                    this.setState({
+                        open: true,
+                        SnackbarMsg: "oops something went wrong",
+                        SnackbarStyle: "snackbar-error",
+                        severity: "error"
+                    });
                 });
-            });
-           
+
         } else {
             console.log('validation failed')
         }
@@ -141,9 +150,9 @@ export default class Registration extends Component {
 
     handleClose = () => {
         this.setState({
-          open: false,
-          SnackbarMsg: "",
-          SnackbarStyle: "error",
+            open: false,
+            SnackbarMsg: "",
+            SnackbarStyle: "error",
         });
     };
 
@@ -153,19 +162,19 @@ export default class Registration extends Component {
                 <form className="top-content">
                     <div>
                         <div className="fundooo">
-                            <h1 style={{color : '#34a853'}}>F</h1>
-                            <h1 style={{color : '#4285f4'}}>u</h1>
-                            <h1 style={{color : '#fbbc05'}}>n</h1>
-                            <h1 style={{color : '#4285f4'}}>d</h1>
-                            <h1 style={{color : '#ea4335'}}>o</h1>
-                            <h1 style={{color : '#fbbc05'}}>o</h1>
+                            <h1 style={{ color: '#34a853' }}>F</h1>
+                            <h1 style={{ color: '#4285f4' }}>u</h1>
+                            <h1 style={{ color: '#fbbc05' }}>n</h1>
+                            <h1 style={{ color: '#4285f4' }}>d</h1>
+                            <h1 style={{ color: '#ea4335' }}>o</h1>
+                            <h1 style={{ color: '#fbbc05' }}>o</h1>
                         </div>
-                        
+
                         <h1 className="content-text">Create your Google Account</h1>
-                        
+
                         <div className="content1">
-                            <TextField className="field-mr" error={this.state.firstNameError} name="firstName" id="outlined-basic" label="First name" helperText={this.state.firstNameErrorMessage} variant="outlined" onChange={this.handleInput}/>
-                            <TextField error={this.state.lastNameError} id="outlined-basic" name="lastName" label="Last name"  helperText={this.state.lastNameErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField className="field-mr" error={this.state.firstNameError} name="firstName" id="outlined-basic" label="First name" helperText={this.state.firstNameErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField error={this.state.lastNameError} id="outlined-basic" name="lastName" label="Last name" helperText={this.state.lastNameErrorMessage} variant="outlined" onChange={this.handleInput} />
                         </div>
 
                         <div className="content2">
@@ -173,35 +182,41 @@ export default class Registration extends Component {
                         </div>
 
                         <div class="content3">
-                            <TextField className="field-mr" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text": "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} variant="outlined" onChange={this.handleInput} />
-                            <TextField name="confirmPassword" type={this.state.showPassword ? "text": "password"} error={this.state.passwordError} id="outlined-basic" label="Confirm Password" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField className="field-mr" error={this.state.passwordError} name="password" type={this.state.showPassword ? "text" : "password"} id="outlined-basic" label="Password" helperText={this.state.passwordErrorMessage} variant="outlined" onChange={this.handleInput} />
+                            <TextField name="confirmPassword" type={this.state.showPassword ? "text" : "password"} error={this.state.passwordError} id="outlined-basic" label="Confirm Password" helperText={this.state.confirmPasswordErrorMessage} variant="outlined" onChange={this.handleInput} />
                         </div>
-                    
-                        <div class= "checkbox">
-                            <Checkbox onClick={this.handleClickToShowPassword} color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }}  />
+
+                        <div class="checkbox">
+                            <Checkbox onClick={this.handleClickToShowPassword} color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
                             <p>Show Password</p>
                         </div>
 
                         <div class="Bottom-Button">
                             <div class="Bottom-text">
-                                <p onClick={this.handleClickToLogin}>Sign in instead</p> 
+                                <p onClick={this.handleClickToLogin}>Sign in instead</p>
                             </div>
                             <div className="button">
                                 <Button variant="contained" color="primary" onClick={this.submit}>Submit</Button>
                             </div>
                         </div>
                     </div>
-                  
+
                     <div className="sigin-img">
                         <div className="sigin-img">
-                            <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="" width="220" height="200" class="j9NuTc TrZEUc"/> 
-                        </div>  
-                        <div className= "img-text">
+                            <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="" width="220" height="200" class="j9NuTc TrZEUc" />
+                        </div>
+                        <div className="img-text">
                             <p>One account. All of Google working for you. </p>
                         </div>
                     </div>
                 </form>
-                <Snackbar
+
+                <Snackbar open={this.state.open} autoHideDuration={4000} onClose={this.handleClose}>
+                    <Alert onClose={this.handleClose} severity={this.state.severity}>
+                        {this.state.SnackbarMsg}
+                    </Alert>
+                </Snackbar>
+                {/* <Snackbar
                     anchorOrigin={{
                         vertical: "bottom",
                         horizontal: "center",
@@ -209,7 +224,7 @@ export default class Registration extends Component {
                     open={this.state.open}
                     autoHideDuration={2000}
                     onClose={this.handleClose}
-                    message={this.state.SnackbarMessage}
+                    message={this.state.SnackbarMsg}
                     className={this.state.SnackbarStyle}
                     action={
                         <React.Fragment>
@@ -223,7 +238,15 @@ export default class Registration extends Component {
                         </IconButton>
                         </React.Fragment>
                     }
-                />
+                /> */}
+                {/* <SnackbarContent anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center",
+                    }}  open={this.state.open} message={this.state.SnackbarMsg} action={action} />
+               
+ */}
+
+
             </div>
         )
     }

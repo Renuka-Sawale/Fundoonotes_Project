@@ -17,10 +17,34 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import '../Dashboard/dashboard.css';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
+import ArchiveIcon from '@material-ui/icons/Archive';
+import EditSharpIcon from '@material-ui/icons/EditSharp';
+import DeleteIcon from '@material-ui/icons/Delete';
+import '../Dashboard/dashboard.scss';
 
+let iconlist = [
+  {
+    text: "Notes",
+    icon: <ArchiveIcon />
+  },
+  {
+    text: "Reminders",
+    icon: <NotificationsNoneIcon />
+  },
+  {
+    text: "Edit labels",
+    icon: <EditSharpIcon />
+  },
+  {
+    text: "Archive",
+    icon: <ArchiveIcon />
+  },
+  {
+    text: "Trash",
+    icon: <DeleteIcon />
+  }
+]
 
 const drawerWidth = 240;
 
@@ -29,18 +53,18 @@ const useStyles = makeStyles((theme) =>
     root: {
       display: 'flex',
     },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
       }),
     },
     menuButton: {
@@ -98,42 +122,42 @@ export default function Dashboard() {
 
   return (
     <div>
-      <CssBaseline />
       <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          className={clsx(classes.menuButton, open && classes.hide)}
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
         >
-          <MenuIcon />
-        </IconButton>
-        
-        <Typography variant="h6" noWrap>
-          Fundoo
-        </Typography>
+        <Toolbar className="toolbar">
+          <IconButton
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+          >
+            <MenuIcon />
+          </IconButton>
 
-        <div className= "search">
-          <div className= "search-icon">
-            <SearchIcon />
+          {/* <div className="fundoo-image">
+          <img class="gb_tc gb_6d" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x " alt="" aria-hidden="true" style="width:40px;height:40px">
+          </div> */}
+          
+          <Typography className="fundoo-text" variant="h6" noWrap>
+            Fundoo
+          </Typography>
+
+          <div className= "search">
+            <div className= "search-icon">
+              <SearchIcon />
+            </div>
+            <InputBase className= "text"
+              placeholder="Search…"
+            />
           </div>
-          <InputBase className= "text"
-            placeholder="Search…"
-          />
-        </div>
-         
-        <div className="profile">
-          <img class="gb_Ca gbii image" src="https://lh3.googleusercontent.com/ogw/ADea4I6j2dahMV2joJcTw6OGDrdDo1m5rnl9Sy0oJ05abQ=s32-c-mo"  alt="" aria-hidden="true" data-noaft=""></img>
-        </div>
-      </Toolbar>
-      
+          
+          <div className="profile">
+            <img class="gb_Ca gbii image" src="https://lh3.googleusercontent.com/ogw/ADea4I6j2dahMV2joJcTw6OGDrdDo1m5rnl9Sy0oJ05abQ=s32-c-mo"  alt="" aria-hidden="true" data-noaft=""></img>
+          </div>
+        </Toolbar>
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -144,21 +168,23 @@ export default function Dashboard() {
           paper: classes.drawerPaper,
         }}
       >
-      <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
-      </div>
-      <Divider />
-      <List>
-        {['Notes', 'Reminders', 'Edit labels', 'Archieve', 'Trash'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {iconlist.map((text, index) => (
+            <ListItem button key={index}>
+              <ListItemIcon>
+                {text.icon}
+              </ListItemIcon>
+              <ListItemText primary={text.text} />
+            </ListItem>
+          ))}
+        </List>
+       <Divider />
       </Drawer>
         {/* <main
           className={clsx(classes.content, {
@@ -167,7 +193,7 @@ export default function Dashboard() {
         >
           <div/>
           <Typography paragraph>
-            
+          
           </Typography>
           <Typography paragraph>
             

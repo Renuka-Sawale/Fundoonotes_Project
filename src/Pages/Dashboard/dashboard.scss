@@ -2,7 +2,7 @@
     position: relative;
     border-radius: revert;
     background-color: whitesmoke;
-    width: 500px;
+    width: 55%;
     margin-left: 92px;
     border-radius: 7px;
 }
@@ -17,31 +17,37 @@
     margin-left: 12px;
 }
 
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fundo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.MuiAppBar-colorPrimary {
+    background-color: white !important;
+}
+
+.fundoo-text {
+    color: black;
+}
 
 .text {
     margin-right: 220px;
 }
 
-.profile {
-
-}
-
 .image{
-    
     border-radius: 50%;
     display: block;
-    
-
-
-
-
-
-
 }
 
 @media (max-width: 720px) {
     .search{
-        width: 500px;
+        width: 500%;
         display: flex;
     }
     .search-icon {

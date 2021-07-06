@@ -73,7 +73,12 @@ export default class Login extends Component {
                 "password": this.state.password
             }
             service.login(data).then((data) => {
-                console.log(data);
+                console.log(data.data.firstName);
+                localStorage.setItem("firstName", data.data.firstName)
+                localStorage.setItem("lastName", data.data.lastName)
+                localStorage.setItem("email", data.data.email)
+                localStorage.setItem("token", data.data.id)
+                this.props.history.push("/dashboard");
             })
             .catch((error) => {
                 console.log("error: ", error);

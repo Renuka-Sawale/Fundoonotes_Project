@@ -2,7 +2,7 @@
     position: relative;
     border-radius: revert;
     background-color: whitesmoke;
-    width: 55%;
+    width: 25%;
     margin-left: 92px;
     border-radius: 7px;
 }
@@ -15,12 +15,20 @@
     justify-content: center;
     color: gray;
     margin-left: 12px;
+    
 }
 
 .toolbar {
     display: flex;
     justify-content: space-between;
 }
+
+.left-content{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
 
 .fundo-text {
     font-size: 20px;

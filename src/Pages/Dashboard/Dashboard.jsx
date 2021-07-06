@@ -21,12 +21,16 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import EditSharpIcon from '@material-ui/icons/EditSharp';
 import DeleteIcon from '@material-ui/icons/Delete';
+import NoteIcon from '@material-ui/icons/Note';
+import logo from "../../Assets/Images/logo.png"
 import '../Dashboard/dashboard.scss';
+import Notes from '../../Components/Notes/Notes';
+
 
 let iconlist = [
   {
     text: "Notes",
-    icon: <ArchiveIcon />
+    icon: <NoteIcon />
   },
   {
     text: "Reminders",
@@ -53,6 +57,12 @@ const useStyles = makeStyles((theme) =>
     root: {
       display: 'flex',
     },
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -61,12 +71,7 @@ const useStyles = makeStyles((theme) =>
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
+    
     menuButton: {
       marginRight: theme.spacing(2),
     },
@@ -76,9 +81,11 @@ const useStyles = makeStyles((theme) =>
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
+      
     },
     drawerPaper: {
       width: drawerWidth,
+      zIndex: "-1 !important"
     },
     drawerHeader: {
       display: 'flex',
@@ -113,45 +120,48 @@ export default function Dashboard() {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(!open);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <div>
       <AppBar
           position="fixed"
           className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
+            // [classes.appBarShift]: open,
           })}
         >
         <Toolbar className="toolbar">
-          <IconButton
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-          >
-            <MenuIcon />
-          </IconButton>
-
-          {/* <div className="fundoo-image">
-          <img class="gb_tc gb_6d" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x " alt="" aria-hidden="true" style="width:40px;height:40px">
-          </div> */}
-          
-          <Typography className="fundoo-text" variant="h6" noWrap>
-            Fundoo
-          </Typography>
-
-          <div className= "search">
-            <div className= "search-icon">
-              <SearchIcon />
+          <div className="left-content">
+              <IconButton
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton)}
+              >
+                <MenuIcon />
+                
+              </IconButton>
+            
+              <div className="fundoo-image">
+                <img src={logo} alt="" />
+              </div>
+              
+              <Typography className="fundoo-text" variant="h6" noWrap>
+                Fundoo
+              </Typography>
+            <div className= "search">
+              <div className= "search-icon">
+                <SearchIcon />
+              </div>
+              <InputBase className= "search-text"
+                placeholder="Search…"
+              />
             </div>
-            <InputBase className= "text"
-              placeholder="Search…"
-            />
           </div>
           
           <div className="profile">
@@ -169,9 +179,9 @@ export default function Dashboard() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          {/* <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+          </IconButton> */}
         </div>
         <Divider />
         <List>
@@ -186,19 +196,9 @@ export default function Dashboard() {
         </List>
        <Divider />
       </Drawer>
-        {/* <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div/>
-          <Typography paragraph>
-          
-          </Typography>
-          <Typography paragraph>
-            
-          </Typography>
-        </main> */}
+        <div>
+          <Notes/>
+        </div>
     </div>
   );
 }
